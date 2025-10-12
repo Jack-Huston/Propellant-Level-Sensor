@@ -74,7 +74,7 @@
 
       <div class="overview-grid">
         <div class="overview-image-container">
-          <img src="placeholder-hero.jpg" alt="Propellant level sensor prototype on workbench" class="overview-image" loading="lazy"/>
+          <img src="Sensor-comparison.jpg" alt="Propellant level sensor comparison and prototype" class="overview-image" loading="lazy"/>
           <div class="image-caption">Prototype concentric-rod capacitance sensor assembly</div>
         </div>
 
@@ -96,7 +96,7 @@
           <div>
             <h3 class="overview-heading">Solution</h3>
             <p class="overview-text">
-              Implemented a capacitanace based concentric two-rod stainless-steel sensor with teflon end caps for electrical isolation and high pressure sealing. Used an Arduino Uno’s known internal trace capacitance to form a capacitor divider with the sensor, enabling consistent capacitance-to-height conversion and a filtered 0–5&nbsp;V analog output proportional to tank fill level with optional I2C communication.
+              Implemented a capacitance-based concentric two-rod stainless-steel sensor with PTFE end caps for electrical isolation and high-pressure sealing. Used an Arduino Uno’s known internal trace capacitance to form a capacitor divider with the sensor, enabling consistent capacitance-to-height conversion and a filtered 0–5&nbsp;V analog output proportional to tank fill level with optional I2C communication.
             </p>
           </div>
         </div>
@@ -114,6 +114,18 @@
           <span class="tech-tag">Test & Integration</span>
           <span class="tech-tag">Design for Manufacturing</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo video directly below the Overview section -->
+  <section class="section section-white" aria-label="Sensor Demonstration Video">
+    <div class="container">
+      <div class="overview-image-container">
+        <video class="overview-image" src="sensor-demonstration.mov" autoplay muted loop playsinline controls poster="Sensor-comparison.jpg">
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+        <div class="image-caption">Sensor demonstration: capacitance-to-height readout behavior</div>
       </div>
     </div>
   </section>
@@ -139,8 +151,8 @@
             <li>Water testing observed ~2142&nbsp;pF (high&nbsp;ε<sub>r</sub>)</li>
           </ul>
           <div class="centered-media">
-            <img src="placeholder-cross-section.jpg" alt="Concentric-rod sensor cross-section diagram" loading="lazy"/>
-            <div class="image-caption">Concentric-rod geometry and fluid fill region</div>
+            <img src="mechanical-structure.jpg" alt="Cross-section of sensing head showing concentric tubes and electrical pass-through" loading="lazy"/>
+            <div class="image-caption">CAD cross section: concentric tubes, PTFE isolation, and electrical pass-through</div>
           </div>
         </div>
       </div>
@@ -152,7 +164,7 @@
         <div class="detail-content">
           <h3 class="detail-title">Electronics & Readout</h3>
           <p class="detail-text">
-            The Arduino’s known internal trace capacitance forms a divider with the sensor. Applying a voltage to charge this capacitor yields a proportional voltage over a set time. That voltage is converted to capacitance, then to fluid height. Height is output as a 0–5&nbsp;V analog level or as a I2C data line to the test stand's computers.
+            The Arduino’s internal trace capacitance forms a divider with the sensor. Charging and measuring the divider voltage yields capacitance, which is then converted to fluid height. Height is output as a 0–5&nbsp;V analog level or via I2C to the test stand.
           </p>
           <ul class="detail-list">
             <li>Internal capacitance ≈ 30&nbsp;pF (characterized for accuracy)</li>
@@ -161,9 +173,14 @@
             <li>Optional parallel cap (~1250&nbsp;pF) extends range for water tests</li>
           </ul>
           <div class="centered-media">
-            <img src="placeholder-electronics.jpg" alt="Arduino-based readout with low-pass filter" loading="lazy"/>
-            <div class="image-caption">Arduino divider readout and RC smoothing for analog output</div>
+            <img src="electrical-output.jpg" alt="Capacitor charge/discharge waveform illustrating capacitance-dependent timing" loading="lazy">
+            <div class="image-caption">Charge/discharge behavior used to infer capacitance (and thus liquid height)</div>
           </div>
+          <div class="centered-media">
+            <img src="sensor-head.jpg" alt="Sensor head with attached PCB shown outside the tank" loading="lazy">
+            <div class="image-caption">Electronics PCB mounted at the sensor head for short, low-noise routing</div>
+          </div>
+          <!-- Leak test note: sensor head passed leakage testing at 700 psi MEOP -->
         </div>
       </div>
 
@@ -174,17 +191,18 @@
         <div class="detail-content">
           <h3 class="detail-title">Mechanical & Integration</h3>
           <p class="detail-text">
-            The stainless/PTFE assembly was designed for high-pressure plumbing and cryogenic exposure. The output voltage and I2C options integrates directly with SRL test-stand DAQ for real-time level visualization and control logic.
+            The stainless/PTFE assembly was designed for high-pressure plumbing and cryogenic exposure. The analog 0–5&nbsp;V and I2C outputs integrate directly with SRL’s DAQ for real-time level visualization and control logic.
           </p>
           <ul class="detail-list">
-            <li>Stainless-steel rod and tube for LOX compatibility and durability</li>
+            <li>Stainless-steel rods & tube for LOX compatibility and durability</li>
             <li>PTFE dielectric and seals for isolation and electrical tank pass-through</li>
             <li>Bench and water-flow calibration prior to stand integration</li>
           </ul>
           <div class="centered-media">
-            <img src="placeholder-install.jpg" alt="Sensor installed on a vertical tank riser" loading="lazy"/>
-            <div class="image-caption">Tank-side installation concept and harness routing</div>
+            <img src="mechanical-structure.jpg" alt="Mechanical cross-section highlighting concentric electrodes and sealed pass-through" loading="lazy"/>
+            <div class="image-caption">Mechanical details: concentric electrodes and sealed pass-through for tank integration</div>
           </div>
+          <!-- Verification: Sensor head passed leakage testing at 700 psi MEOP -->
         </div>
       </div>
     </div>
@@ -305,56 +323,56 @@
   </section>
 
   <!-- Image Gallery -->
-    <section class="section section-white">
-        <div class="container-wide">
-            <h2 class="section-title">Project Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="packaged-sensor.jpg" alt="Sensor packaged prior to shipment" loading="lazy">
-                    <div class="gallery-caption">Packaged sensor for shipment to the testing facility</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="pcb_board.jpg" alt="Electronics board close-up" loading="lazy">
-                    <div class="gallery-caption">Electronics board assembled and verified</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="vacuum-testing.jpg" alt="Vacuum chamber setup during test" loading="lazy">
-                    <div class="gallery-caption">Vacuum testing setup at the ice grain accelerator</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="sensor-in-space.jpg" alt="3D render of the sensor concept in space" loading="lazy">
-                    <div class="gallery-caption">3D concept render: sensor in space</div>
-                </div>
-            </div>
+  <section class="section section-white">
+    <div class="container-wide">
+      <h2 class="section-title">Project Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="Capacitive_Sensor_Board_Design.jpg" alt="Capacitive sensor PCB layout and board render" loading="lazy">
+          <div class="gallery-caption">Capacitive sensor PCB design</div>
         </div>
-    </section>
+        <div class="gallery-item">
+          <img src="Capacitive_Sensor_Circuit_Schematic.jpg" alt="Capacitive sensor circuit schematic" loading="lazy">
+          <div class="gallery-caption">Capacitive sensor circuit schematic</div>
+        </div>
+        <div class="gallery-item">
+          <img src="sensor-head.jpg" alt="Sensor head with attached PCB" loading="lazy">
+          <div class="gallery-caption">Sensor head assembly with readout PCB</div>
+        </div>
+        <div class="gallery-item">
+          <img src="mechanical-structure.jpg" alt="Mechanical cross section of sensing head" loading="lazy">
+          <div class="gallery-caption">Mechanical cross section: concentric tubes & pass-through</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Call to Action -->
-    <section class="section cta-section">
-        <div class="container">
-            <h2 class="cta-title">Interested in Learning More?</h2>
-            <p class="cta-text">I'd be happy to discuss this project in detail or explore collaboration opportunities.</p>
-            <div class="cta-buttons">
-                <a href="mailto:jackthuston1@gmail.com" class="btn-cta-primary">
-                    <i data-lucide="mail"></i>
-                    <span>Get in Touch</span>
-                </a>
-                <a href="https://jack-huston.github.io/#projects" class="btn-cta-secondary">
-                    <i data-lucide="arrow-left"></i>
-                    <span>View Other Projects</span>
-                </a>
-            </div>
-        </div>
-    </section>
+  <!-- Call to Action -->
+  <section class="section cta-section">
+    <div class="container">
+      <h2 class="cta-title">Interested in Learning More?</h2>
+      <p class="cta-text">I'd be happy to discuss this project in detail or explore collaboration opportunities.</p>
+      <div class="cta-buttons">
+        <a href="mailto:jackthuston1@gmail.com" class="btn-cta-primary">
+          <i data-lucide="mail"></i>
+          <span>Get in Touch</span>
+        </a>
+        <a href="https://jack-huston.github.io/#projects" class="btn-cta-secondary">
+          <i data-lucide="arrow-left"></i>
+          <span>View Other Projects</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <span>© 2025 Jack Huston.</span>
-            <i data-lucide="rocket" class="icon-footer"></i>
-            <span>Propelling aerospace innovation, one engine at a time.</span>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <span>© 2025 Jack Huston.</span>
+      <i data-lucide="rocket" class="icon-footer"></i>
+      <span>Propelling aerospace innovation, one engine at a time.</span>
+    </div>
+  </footer>
 
   <script>
     lucide.createIcons();
@@ -386,13 +404,7 @@
         : 'rgba(255, 255, 255, 0.95)';
     });
 
-    // ensure icons after any dynamic changes
     setTimeout(() => lucide.createIcons(), 100);
   </script>
 </body>
 </html>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
