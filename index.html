@@ -51,7 +51,7 @@
       </div>
       <h1 class="project-hero-title">LOX/RP-1 Propellant Level Sensor</h1>
       <p class="project-hero-subtitle">
-        A cryo-capacitance liquid level sensor built for CU Boulder’s Sounding Rocket Lab (SRL) test stand.
+        A cryo-compatible capacitance based liquid level sensor built for CU Boulder’s Sounding Rocket Lab (SRL) test stand.
       </p>
       <div class="project-meta">
         <div class="meta-item">
@@ -82,21 +82,21 @@
           <div>
             <h3 class="overview-heading">Mission</h3>
             <p class="overview-text">
-              Design and build a robust liquid level sensor to measure LOX and RP-1 levels in SRL’s engine test stand tanks. The instrument needed to survive high-pressure plumbing and cryogenic temperatures while providing a simple, reliable output for stand operations.
+              Design and build a robust liquid level sensor to measure LOX and RP-1 levels in SRL’s liquid engine test stand tanks. The instrument needed to survive the high-pressure environment and cryogenic temperatures while providing a simple, reliable output for stand operations.
             </p>
           </div>
 
           <div>
             <h3 class="overview-heading">Challenge</h3>
             <p class="overview-text">
-              Create a capacitance-based measurement that works across fluids with very different permittivities, functions in cryogenic and ambient water test conditions, and fits within SRL’s existing DAQ/control toolchain without adding system complexity.
+              Create a capacitance-based measurement that works across fluids with very different permittivities, functions in cryogenic and ambient water test conditions, and fits within SRL’s existing DAQ/control loop without adding system complexity.
             </p>
           </div>
 
           <div>
             <h3 class="overview-heading">Solution</h3>
             <p class="overview-text">
-              Implemented a concentric two-rod stainless-steel sensor with PTFE end caps for electrical isolation and pressure sealing. Used an Arduino Uno’s known internal trace capacitance to form a capacitor divider with the sensor, enabling capacitance-to-height conversion and a filtered 0–5&nbsp;V analog output proportional to fill level.
+              Implemented a capacitanace based concentric two-rod stainless-steel sensor with teflon end caps for electrical isolation and high pressure sealing. Used an Arduino Uno’s known internal trace capacitance to form a capacitor divider with the sensor, enabling consistent capacitance-to-height conversion and a filtered 0–5&nbsp;V analog output proportional to tank fill level with optional I2C communication.
             </p>
           </div>
         </div>
@@ -111,6 +111,8 @@
           <span class="tech-tag">SolidWorks</span>
           <span class="tech-tag">Stainless/PTFE Fabrication</span>
           <span class="tech-tag">Cryogenic Testing</span>
+          <span class="tech-tag">Test & Integration</span>
+          <span class="tech-tag">Design for Manufacturing</span>
         </div>
       </div>
     </div>
@@ -128,7 +130,7 @@
         <div class="detail-content">
           <h3 class="detail-title">Capacitive Sensing Principle</h3>
           <p class="detail-text">
-            Two concentric stainless rods form a capacitor. As liquid fills the annulus, the effective permittivity increases and the capacitance rises. This shift is mapped to liquid height using the fluid’s properties and the sensor’s geometry.
+            Two concentric electrically isolated stainless-steel rods form a capacitor. As liquid fills the annulus between the rods, the effective permittivity increases and the capacitance rises. This shift in capacitance is mapped to liquid height using the fluid’s properties and the sensor’s geometry.
           </p>
           <ul class="detail-list">
             <li>Stainless concentric electrodes</li>
@@ -150,7 +152,7 @@
         <div class="detail-content">
           <h3 class="detail-title">Electronics & Readout</h3>
           <p class="detail-text">
-            The Arduino’s known internal trace capacitance forms a divider with the sensor. Applying a step yields a proportional voltage that is converted to capacitance, then to fluid height. Height is output as a 0–5&nbsp;V analog level via PWM filtered by a low-pass network.
+            The Arduino’s known internal trace capacitance forms a divider with the sensor. Applying a voltage to charge this capacitor yields a proportional voltage over a set time. That voltage is converted to capacitance, then to fluid height. Height is output as a 0–5&nbsp;V analog level or as a I2C data line to the test stand's computers.
           </p>
           <ul class="detail-list">
             <li>Internal capacitance ≈ 30&nbsp;pF (characterized for accuracy)</li>
@@ -172,11 +174,11 @@
         <div class="detail-content">
           <h3 class="detail-title">Mechanical & Integration</h3>
           <p class="detail-text">
-            The stainless/PTFE assembly was designed for high-pressure plumbing and cryogenic exposure. The output voltage integrates directly with SRL test-stand DAQ for real-time level visualization and control logic.
+            The stainless/PTFE assembly was designed for high-pressure plumbing and cryogenic exposure. The output voltage and I2C options integrates directly with SRL test-stand DAQ for real-time level visualization and control logic.
           </p>
           <ul class="detail-list">
-            <li>Stainless rods and tube hardware for durability</li>
-            <li>PTFE dielectric and seals for isolation</li>
+            <li>Stainless-steel rod and tube for LOX compatibility and durability</li>
+            <li>PTFE dielectric and seals for isolation and electrical tank pass-through</li>
             <li>Bench and water-flow calibration prior to stand integration</li>
           </ul>
           <div class="centered-media">
@@ -202,7 +204,7 @@
             <p><strong>Operating Capacitance:</strong> ~36–58&nbsp;pF (LOX/RP-1)</p>
             <p><strong>Extended Range (water):</strong> ≈ 2.1&nbsp;nF with parallel cap</p>
             <p><strong>Resolution:</strong> ~1% (3.5–225&nbsp;pF), ~5% to 2&nbsp;nF</p>
-            <p><strong>Min Height Resolution:</strong> ±11.5&nbsp;mm</p>
+            <p><strong>Min Fluid Height Resolution:</strong> ±11.5&nbsp;mm</p>
           </div>
         </div>
 
@@ -212,8 +214,8 @@
           </div>
           <div class="spec-content">
             <p><strong>Fluids:</strong> LOX, RP-1, water (for flow testing)</p>
-            <p><strong>Conditions:</strong> Cryogenic-tolerant, high-pressure plumbing</p>
-            <p><strong>Isolation:</strong> PTFE end-cap dielectric and passthrough</p>
+            <p><strong>Conditions:</strong> Cryogenic-tolerant, high-pressure tank</p>
+            <p><strong>Isolation:</strong> PTFE end-cap dielectric and electrical passthrough</p>
           </div>
         </div>
 
@@ -224,7 +226,8 @@
           <div class="spec-content">
             <p><strong>Sensor Body:</strong> Concentric stainless rods</p>
             <p><strong>Dielectric/Seals:</strong> PTFE</p>
-            <p><strong>Mounting:</strong> Vertical tank/riser insertion</p>
+            <p><strong>Mounting:</strong> Vertical in tank with riser insertion</p>
+            <p><strong>Pressure:</strong> 1.6 structural FoS with 700 psi MEOP</p>
           </div>
         </div>
 
@@ -233,18 +236,10 @@
             <i data-lucide="plug-zap"></i><h3>Interface</h3>
           </div>
           <div class="spec-content">
-            <p><strong>Controller:</strong> Arduino Uno (divider method)</p>
-            <p><strong>Output:</strong> 0–5&nbsp;V analog via PWM + RC filter</p>
-            <p><strong>Calibration:</strong> Fluid permittivity & sensor geometry</p>
+            <p><strong>Controller:</strong> Arduino Uno</p>
+            <p><strong>Output:</strong> 0–5&nbsp;V analog or I2C</p>
+            <p><strong>Calibration:</strong> Characterizes fluid permittivity & sensor geometry</p>
           </div>
-        </div>
-      </div>
-
-      <div class="diagram-section">
-        <h3 class="diagram-title">System Architecture</h3>
-        <div class="diagram-placeholder">
-          <i data-lucide="network"></i>
-          <p>Sensor → Capacitor Divider (Arduino) → Capacitance→Height → PWM + Low-Pass → 0–5&nbsp;V to DAQ</p>
         </div>
       </div>
     </div>
@@ -284,13 +279,13 @@
             <i data-lucide="check-circle" class="achievement-icon"></i>
             <div class="achievement-text">
               <h4>Direct DAQ Integration</h4>
-              <p>Generated a filtered 0–5&nbsp;V analog signal mapping 0–100% fill, simplifying stand operations.</p>
+              <p>Generated a filtered 0–5&nbsp;V analog signal mapping 0–100% fill with optional I2C output simplifying stand operations.</p>
             </div>
           </div>
           <div class="achievement-item">
             <i data-lucide="check-circle" class="achievement-icon"></i>
             <div class="achievement-text">
-              <h4>Range Extensible for Water Tests</h4>
+              <h4>Sensor Range Easily Extensible for Water Tests</h4>
               <p>Optional ~1250&nbsp;pF parallel capacitor extended measurable range for high-ε<sub>r</sub> water flow testing.</p>
             </div>
           </div>
@@ -298,12 +293,12 @@
 
         <h3 class="results-heading">Lessons Learned</h3>
         <p class="results-text">
-          Characterizing the Arduino’s internal capacitance is critical for accuracy. Fluid permittivity changes and temperature effects drive the need for fluid-specific calibration. RC filter selection must balance output smoothness with response time for fill-rate transients.
+          Characterizing the Arduino’s internal capacitance is critical for accuracy and is not consistent across different chips. This should be calibrated independently for each sensing device. Fluid permittivity changes and temperature effects drive the need for fluid-specific calibration. Cleanliness of system must be maintained for LO2 compatibility and to ensure testing DI water remains non-conductive.
         </p>
 
         <h3 class="results-heading">Future Work</h3>
         <p class="results-text">
-          Add temperature compensation, implement a dedicated capacitance-to-digital converter for higher resolution, and perform full cryogenic calibration with LOX and RP-1 to refine height mapping across operating conditions.
+          Add temperature compensation, implement a dedicated capacitance-to-digital converter for higher resolution, and perform full cryogenic calibration with LOX and RP-1 to refine height mapping across operating conditions instead of solely using DI Water.
         </p>
       </div>
     </div>
@@ -396,3 +391,8 @@
   </script>
 </body>
 </html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
