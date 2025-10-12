@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Liquid Level Sensor (SRL) — Jack Huston</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="https://jack-huston.github.io/#projects" class="nav-back-btn" rel="noopener">
+        <i data-lucide="arrow-left"></i>
+        <span>Back to Portfolio</span>
+      </a>
+      <div class="nav-brand">
+        <i data-lucide="droplet" class="icon-nav"></i>
+        <span>Jack Huston</span>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open site menu">
+        <i data-lucide="menu" id="menuIcon"></i>
+        <i data-lucide="x" id="closeIcon" style="display:none;"></i>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#overview" class="nav-link">Overview</a>
+        <a href="#details" class="nav-link">Design</a>
+        <a href="#technical" class="nav-link">Technical</a>
+        <a href="#results" class="nav-link">Results</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#overview" class="mobile-link">Overview</a>
+    <a href="#details" class="mobile-link">Design</a>
+    <a href="#technical" class="mobile-link">Technical</a>
+    <a href="#results" class="mobile-link">Results</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="project-hero hero-srl">
+    <div class="project-hero-content">
+      <div class="project-badge">
+        <i data-lucide="thermometer-snowflake"></i>
+        <span>Cryogenic Test Instrumentation</span>
+      </div>
+      <h1 class="project-hero-title">SRL Liquid Level Sensor</h1>
+      <p class="project-hero-subtitle">
+        Capacitive fuel/oxidizer level sensing for CU Boulder Sounding Rocket Lab’s tank test stand
+      </p>
+      <div class="project-meta">
+        <div class="meta-item">
+          <i data-lucide="calendar"></i>
+          <span>2021 – 2022</span>
+        </div>
+        <div class="meta-item">
+          <i data-lucide="map-pin"></i>
+          <span>CU Boulder — Sounding Rocket Lab</span>
+        </div>
+        <div class="meta-item">
+          <i data-lucide="user"></i>
+          <span>Solo Contributor</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="section section-white">
+    <div class="container">
+      <h2 class="section-title">Project Overview</h2>
+      <div class="overview-grid">
+        <div class="overview-image-container stack-vertical">
+          <figure class="stack-item">
+            <img src="placeholder-hero.jpg" alt="Liquid level sensor installed on a tank mockup" class="overview-image" loading="lazy">
+            <figcaption class="image-caption">Concentric-rod capacitive probe concept</figcaption>
+          </figure>
+          <figure class="stack-item">
+            <img src="sensor-rod-assembly.jpg" alt="Stainless concentric rod assembly with PTFE end caps" class="overview-image" loading="lazy">
+            <figcaption class="image-caption">Stainless-steel concentric rods with PTFE isolation and passthrough</figcaption>
+          </figure>
+        </div>
+
+        <div class="overview-content">
+          <h3 class="overview-heading">Purpose</h3>
+          <p class="overview-text">
+            Build a robust, cryo-ready capacitive sensor to measure liquid fuel and oxidizer levels within SRL’s pressure tanks. The probe must tolerate high pressure, cryogenic temperatures, and deliver an analog level signal to ground support electronics.
+          </p>
+
+          <h3 class="overview-heading">How It Works</h3>
+          <p class="overview-text">
+            Two concentric stainless-steel rods form a capacitor. As liquid fills between them, the effective permittivity increases, changing capacitance. The system measures that change, converts it to percent height, and outputs a 0–5&nbsp;V analog level (0%–100% coverage).
+          </p>
+
+          <div class="tech-stack">
+            <h3 class="tech-stack-title">Technologies & Tools</h3>
+            <div class="tech-tags">
+              <span class="tech-tag">Arduino Uno</span>
+              <span class="tech-tag">Capacitive Sensing</span>
+              <span class="tech-tag">Analog Filters</span>
+              <span class="tech-tag">PTFE Machining</span>
+              <span class="tech-tag">Stainless Fabrication</span>
+              <span class="tech-tag">Calibration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design & Development -->
+  <section id="details" class="section">
+    <div class="container">
+      <h2 class="section-title">Design & Development</h2>
+
+      <!-- Sensor Mechanics -->
+      <div class="detail-card">
+        <div class="detail-icon-container">
+          <i data-lucide="wrench" class="detail-icon"></i>
+        </div>
+        <div class="detail-content">
+          <h3 class="detail-title">Sensor Mechanics</h3>
+          <p class="detail-text">
+            The probe uses two concentric stainless-steel rods with PTFE end caps to (1) maintain concentric spacing, (2) provide electrical isolation, and (3) create a high-pressure passthrough to the tank exterior. The geometry is sized to keep nominal capacitance in range while maintaining rigidity and flow clearance.
+          </p>
+          <ul class="detail-list">
+            <li>Materials: Stainless-steel electrodes, PTFE spacers/caps</li>
+            <li>Pressure &amp; cryogenic compatible construction</li>
+            <li>Free-flow path between electrodes for propellants</li>
+          </ul>
+          <div class="centered-media">
+            <img src="mechanical-structure-layout.jpg" alt="3D model of the probe with labeled components and materials" loading="lazy">
+            <div class="image-caption">3D mechanical layout with basic component functions and materials</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Electronics & Measurement -->
+      <div class="detail-card detail-card-reverse">
+        <div class="detail-icon-container">
+          <i data-lucide="cpu" class="detail-icon"></i>
+        </div>
+        <div class="detail-content">
+          <h3 class="detail-title">Electronics & Measurement</h3>
+          <p class="detail-text">
+            Capacitance is measured by forming a capacitive divider between the sensor and the Arduino Uno’s internal trace capacitance (~30&nbsp;pF typical). Applying a step and sampling the divided voltage produces a value proportional to sensor capacitance; code converts that to liquid height.
+          </p>
+          <ul class="detail-list">
+            <li>Nominal sensor range: ~36–58&nbsp;pF (propellants)</li>
+            <li>Water testing can reach ~2.142&nbsp;nF (high dielectric)</li>
+            <li>Optional: add a precise ~1250&nbsp;pF capacitor to ground for water tests (value measured via DMM and used in code)</li>
+          </ul>
+          <div class="centered-media">
+            <img src="arduino-divider.jpg" alt="Capacitive divider concept on Arduino input" loading="lazy">
+            <div class="image-caption">Capacitive divider measurement using Arduino internal capacitance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Signal Conditioning & Output -->
+      <div class="detail-card">
+        <div class="detail-icon-container">
+          <i data-lucide="activity" class="detail-icon"></i>
+        </div>
+        <div class="detail-content">
+          <h3 class="detail-title">Signal Conditioning & Output</h3>
+          <p class="detail-text">
+            The board computes height internally and produces a DC analog voltage via PWM smoothed by a low-pass filter. Output is 0&nbsp;V at 0% coverage and 5&nbsp;V at 100% coverage, linear in between.
+          </p>
+          <ul class="detail-list">
+            <li>PWM → RC low-pass → buffered 0–5&nbsp;V output</li>
+            <li>Simple mapping from calibrated capacitance to percent height</li>
+            <li>Ground support electronics read 0–5&nbsp;V as level</li>
+          </ul>
+          <div class="centered-media">
+            <img src="lp-filter.jpg" alt="Low-pass filter smoothing a PWM signal to DC" loading="lazy">
+            <div class="image-caption">PWM smoothing to DC level for an analog 0–5&nbsp;V output</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Specifications -->
+  <section id="technical" class="section section-white">
+    <div class="container">
+      <h2 class="section-title">Technical Specifications</h2>
+
+      <div class="specs-grid">
+        <div class="spec-card">
+          <div class="spec-header">
+            <i data-lucide="zap"></i>
+            <h3>Power & I/O</h3>
+          </div>
+          <div class="spec-content">
+            <p><strong>Controller:</strong> Arduino Uno</p>
+            <p><strong>Input Power:</strong> 5&nbsp;V DC (USB or regulated line)</p>
+            <p><strong>Analog Output:</strong> 0–5&nbsp;V (PWM + LPF), linear with level</p>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-header">
+            <i data-lucide="gauge"></i>
+            <h3>Performance</h3>
+          </div>
+          <div class="spec-content">
+            <p><strong>Nominal Range:</strong> ~36–58&nbsp;pF (propellants)</p>
+            <p><strong>Water Test Range:</strong> up to ~2.142&nbsp;nF</p>
+            <p><strong>Resolution:</strong> ~1% for 3.5–225&nbsp;pF; ~5% up to 2&nbsp;nF</p>
+            <p><strong>Height Resolution:</strong> ≈ ±11.5&nbsp;mm (minimum)</p>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-header">
+            <i data-lucide="thermometer"></i>
+            <h3>Environmental</h3>
+          </div>
+          <div class="spec-content">
+            <p><strong>Medium:</strong> Liquid fuel/oxidizer; water for bench tests</p>
+            <p><strong>Compatibility:</strong> Cryogenic & high-pressure capable probe assembly</p>
+            <p><strong>Isolation:</strong> PTFE end caps for electrical separation & passthrough</p>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-header">
+            <i data-lucide="ruler"></i>
+            <h3>Physical</h3>
+          </div>
+          <div class="spec-content">
+            <p><strong>Probe Geometry:</strong> Concentric rod electrodes (dimensions TBD)</p>
+            <p><strong>Materials:</strong> Stainless steel, PTFE</p>
+            <p><strong>Mounting:</strong> Tank-top passthrough with sealed feedthrough</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diagram-section">
+        <h3 class="diagram-title">System Architecture</h3>
+        <div class="overview-image-container">
+          <img src="placeholder-architecture.jpg" alt="Block diagram: probe → divider → compute → LPF → 0–5 V output" class="overview-image" loading="lazy">
+          <div class="image-caption">Probe → Capacitive Divider → Height Compute → PWM+LPF → 0–5&nbsp;V analog</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results & Notes -->
+  <section id="results" class="section">
+    <div class="container">
+      <h2 class="section-title">Results & Notes</h2>
+
+      <div class="results-highlight">
+        <div class="highlight-card">
+          <div class="highlight-number">~1%</div>
+          <div class="highlight-label">Capacitance resolution (3.5–225&nbsp;pF)</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-number">~5%</div>
+          <div class="highlight-label">Capacitance resolution (to 2&nbsp;nF)</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-number">±11.5&nbsp;mm</div>
+          <div class="highlight-label">Minimum height resolution</div>
+        </div>
+      </div>
+
+      <div class="overview-image-container" style="margin-top:1.25rem;">
+        <img src="calibration-setup.jpg" alt="Bench calibration with water column and reference meter" class="overview-image" loading="lazy">
+        <div class="image-caption">Bench calibration setup (water column for dielectric extremes)</div>
+      </div>
+
+      <div class="results-content">
+        <h3 class="results-heading">Key Takeaways</h3>
+        <div class="achievement-grid">
+          <div class="achievement-item">
+            <i data-lucide="check-circle" class="achievement-icon"></i>
+            <div class="achievement-text">
+              <h4>Cryo & Pressure Minded Design</h4>
+              <p>Probe construction and isolation chosen for high pressure and cryogenic compatibility.</p>
+            </div>
+          </div>
+          <div class="achievement-item">
+            <i data-lucide="check-circle" class="achievement-icon"></i>
+            <div class="achievement-text">
+              <h4>Simple Analog Interface</h4>
+              <p>Ground support can read a clean 0–5&nbsp;V level signal; mapping is linear with coverage.</p>
+            </div>
+          </div>
+          <div class="achievement-item">
+            <i data-lucide="check-circle" class="achievement-icon"></i>
+            <div class="achievement-text">
+              <h4>Water-Test Strategy</h4>
+              <p>For water’s high dielectric, an accurately measured ~1250&nbsp;pF capacitor extends the measurable range.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="results-heading">Future Improvements</h3>
+        <p class="results-text">
+          Add temperature compensation for permittivity drift, tighten geometry tolerances for improved height resolution, and consider a dedicated capacitance-to-digital IC for higher dynamic range and noise immunity while keeping the 0–5&nbsp;V interface.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section">
+    <div class="container">
+      <h2 class="cta-title">Want the build files or code?</h2>
+      <p class="cta-text">Happy to share the CAD, Arduino sketch, and calibration notes.</p>
+      <div class="cta-buttons">
+        <a href="mailto:jackthuston1@gmail.com" class="btn-cta-primary">
+          <i data-lucide="mail"></i>
+          <span>Get in Touch</span>
+        </a>
+        <a href="https://jack-huston.github.io/#projects" class="btn-cta-secondary" rel="noopener">
+          <i data-lucide="arrow-left"></i>
+          <span>View Other Projects</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <span>© 2025 Jack Huston.</span>
+      <i data-lucide="droplet" class="icon-footer"></i>
+      <span>Practical instrumentation for real test stands.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Init icons
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide?.createIcons) lucide.createIcons();
+    });
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+
+    function setMenu(open) {
+      mobileMenu.classList.toggle('active', open);
+      mobileMenuBtn.setAttribute('aria-expanded', String(open));
+      mobileMenuBtn.setAttribute('aria-label', open ? 'Close site menu' : 'Open site menu');
+      menuIcon.style.display = open ? 'none' : 'block';
+      closeIcon.style.display = open ? 'block' : 'none';
+    }
+
+    mobileMenuBtn.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('active')));
+    document.querySelectorAll('.mobile-link').forEach(link =>
+      link.addEventListener('click', () => setMenu(false))
+    );
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) setMenu(false);
+    });
+
+    // Navbar bg on scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Smooth scroll (CSS also set)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
