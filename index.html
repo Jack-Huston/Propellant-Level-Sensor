@@ -52,7 +52,7 @@
       </div>
       <h1 class="project-hero-title">LOX/RP-1 Propellant Level Sensor</h1>
       <p class="project-hero-subtitle">
-        A cryo-compatible capacitance based liquid level sensor built for CU Boulder’s Sounding Rocket Lab (SRL) test stand.
+        A cryo-compatible capacitance-based liquid level sensor built for CU Boulder’s Sounding Rocket Lab (SRL) test stand.
       </p>
       <div class="project-meta">
         <div class="meta-item">
@@ -165,13 +165,13 @@
         <div class="detail-content">
           <h3 class="detail-title">Electronics & Readout</h3>
           <p class="detail-text">
-            The Arduino’s internal trace capacitance forms a divider with the sensor. Charging and measuring the divider voltage yields capacitance, which is then converted to fluid height. Height is output as a 0–5&nbsp;V analog level or via I2C to the test stand.
+            The Arduino’s internal trace capacitance forms a divider with the sensor. By charging the sensor rods and measuring the charged voltage over time can be used to calculate capacitance, which is then converted to fluid height. Height is output as a 0–5&nbsp;V analog level or via I2C to the test stand.
           </p>
           <ul class="detail-list">
             <li>Internal capacitance ≈ 30&nbsp;pF (characterized for accuracy)</li>
-            <li>Resolution: ~1% for 3.5–225&nbsp;pF; ~5% up to 2&nbsp;nF</li>
-            <li>Minimum height resolution ≈ ±11.5&nbsp;mm (from method error)</li>
-            <li>Optional parallel cap (~1250&nbsp;pF) extends range for water tests</li>
+            <li>Resolution: ~1% for Propellant (3.5–225&nbsp;pF); ~5% for DI Water (Up to 2&nbsp;nF)</li>
+            <li>Minimum height resolution ≈ ±11.5&nbsp;mm (total propogated error)</li>
+            <li>Optional parallel cap (~1250&nbsp;pF) allows for easy conversion to water tests</li>
           </ul>
           <div class="centered-media">
             <img src="electrical-output.jpg" alt="Capacitor charge/discharge waveform illustrating capacitance-dependent timing" loading="lazy">
@@ -198,6 +198,7 @@
             <li>Stainless-steel rods & tube for LOX compatibility and durability</li>
             <li>PTFE dielectric and seals for isolation and electrical tank pass-through</li>
             <li>Bench and water-flow calibration prior to stand integration</li>
+            <li>Compressed PTFE ensured liquid leak tight</li>
           </ul>
           <div class="centered-media">
             <img src="mechanical-structure.jpg" alt="Mechanical cross-section highlighting concentric electrodes and sealed pass-through" loading="lazy"/>
